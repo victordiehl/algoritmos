@@ -17,10 +17,11 @@ public class Pilha {
 		count++;						
 	}
 	
-	public void pop() {
+	public String pop() {
 		Node aux = head;
 		head = head.getNext();
-		count --;		
+		count --;
+		return aux.getElement();
 	}
 	
 	public int size(){
@@ -31,4 +32,13 @@ public class Pilha {
 		return head.getElement();
 	}
 	
+	public void clear(){
+		count = 0;
+		head = null;
+	}
+	
+	public boolean isEmpty(){
+		return count == 0;
+	}
+			
 }

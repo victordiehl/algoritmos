@@ -13,7 +13,7 @@ public class Node {
 		return element;
 	}
 
-	public void setValue(String element) {
+	public void setElement(String element) {
 		this.element = element;
 	}
 	
