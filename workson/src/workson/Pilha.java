@@ -3,18 +3,26 @@ package workson;
 public class Pilha {
 	private Node head;
 	private int count;	
+	private int max;
 
 
 	public Pilha(){
 		head = null;
 		count = 0;
+		max = 0;
 	}
 	
 	public void push(String value) {
 		Node n = new Node(value);
 		n.setNext(head);
 		head = n;
-		count++;						
+		count++;
+		if(count > max)
+			max = count;
+	}
+	
+	public int max(){
+		return max;
 	}
 	
 	public String pop() {
@@ -27,6 +35,7 @@ public class Pilha {
 	public int size(){
 		return count;
 	}
+		
 	
 	public String top(){
 		return head.getElement();

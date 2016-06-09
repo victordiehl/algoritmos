@@ -13,17 +13,28 @@ public class Calculadora {
 			String line;
 			Pilha p = new Pilha();			
 			
-			while ((line = br.readLine()) != null) {			
+			while ((line = br.readLine()) != null) {
+				int contaParenteses = 0;
 				String parts[]= line.split(" ");	
-				int pips = 0;
-				int pops = 0;				
+				
+				//Verificação da expressão
 				for(int i = 0; i<parts.length; i++){
-					if(parts[i].equals("(")) 
-					pips++;
-					if(!parts[i].equals(")"))  
-						p.push(parts[i]);
-					else {
-						pops++;						
+					if(parts[i].equals("("))
+						contaParenteses++;
+					if(parts[i].equals(")"))
+						contaParenteses--;
+				}
+				if(contaParenteses != 0) {
+					System.out.println("Erro de Sintaxe!");
+					System.out.println(" ");
+					continue;
+				}
+					
+					//cálculos.
+				for(int j = 0; j<parts.length; j++){					
+					if(!parts[j].equals(")"))  
+						p.push(parts[j]);
+					else {											
 						Double val1 = Double.parseDouble(p.pop());
 						String op = p.pop(); 
 						Double val2 = Double.parseDouble(p.pop());
@@ -45,9 +56,10 @@ public class Calculadora {
 						p.push(resposta.toString());					
 					}
 					
-				}
-				System.out.println(pips + " " + pops);
-				System.out.println(p.top());				
+				}				
+				System.out.println("Resultado: " + p.top());
+				System.out.println("Tamanho máximo: " + p.max());
+				System.out.println(" ");
 				p.clear();
 			}
 			
